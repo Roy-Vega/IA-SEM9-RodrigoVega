@@ -6,9 +6,12 @@ A continuacion se describe el codigo que genera el modelo xml entrenado por el a
 
 Lo primero que se realiza es importar librerias.
 * Numpy importado como "np", se usa para realizar operaciones en matrices y arreglos. 
-* 
+* La librería "cv2" importada como "cv", se usa para utilizar la librería OpenCV, diseñada para procesamiento de imágenes y visión por computadora. En este caso permite usar los algoritmos de reconocimiento facial como EigenFace, FisherFace y LBPH. 
+* La librería "os" permite interactuar con el sistema operativo, para realizar ciertas operaciones y funcionalidades.
 
+Después en la variable "dataSet" se almacena la ruta absoluta de la carpeta que contiene las subcarpetas individuales de cada persona. Los nombres de esas subcarpetas se almacenan en la lista (arreglo) "faces" como strings, que son de donde se va a entrenar el modelo y se imprime en consola. En este caso se entrena el modelo con seis personas, por lo que la lista imprime los nombres de las carpetas correspondientes a esas seis personas.
 
+Posteriormente, se declara la variable "labels" que es una lista en donde se guardan las etiquetas generadas durante el proceso de lectura de las carpetas. Por cada imagen de las subcarpetas que son las personas, corresponde a una etiqueta y empieza por el número 0. En este caso, como son seis personas, se tendrán valores del 0 al 5. Y dependiendo de la cantidad de imágenes que encuentra por persona se tendrá ese número de etiquetas. Si la primera persona tiene 366 imágenes, se agrega 366 veces el valor 0 a la lista.
 
 Codigo:
 ```python
