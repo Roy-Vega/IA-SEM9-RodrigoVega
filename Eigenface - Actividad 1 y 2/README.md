@@ -73,10 +73,10 @@ A continuación se usa un ciclo infinito "while", ya que se dice que se siga eje
 
 Dentro del ciclo "while" sucede lo siguiente:
 * La línea `ret, frame = cap.read()` captura un fotograma del video en vivo, "ret" es un valor booleano que indica si se lee el fotograma exitosamente, "frame" contiene el fotograma capturado y con el método `.read()` lee el fotograma y retorno los dos valores "ret" y" frame".
-* La linea `if ret == False: break` se usa para romper el ciclo, si no hay video.
-* La linea `gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)` convierte el fotograma a una escala de grises usando el método `.cvtColor`. 
-* La linea `cpGray = gray.copy()` crea una copia del fotograma (imagen) en escala de grises.
-* La linea `rostros = rostro.detectMultiScale(gray, 1.3, 3)` usa el clasificador Haar para detectar rostros en la imagen en escala de grises, ya que en esta escala se reduce la complejidad computacional y se mejora el rendimiento, haciendo que sea más eficiente. 
+* La línea `if ret == False: break` se usa para romper el ciclo, si no hay video.
+* La línea `gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)` convierte el fotograma a una escala de grises usando el método `.cvtColor`. 
+* La línea `cpGray = gray.copy()` crea una copia del fotograma (imagen) en escala de grises.
+* La línea `rostros = rostro.detectMultiScale(gray, 1.3, 3)` usa el clasificador Haar para detectar rostros en la imagen en escala de grises, ya que en esta escala se reduce la complejidad computacional y se mejora el rendimiento, haciendo que sea más eficiente. 
 
 Enseguida, en la línea `for(x, y, w, h) in rostros:` se tiene un ciclo "for" para iterar sobre "rostros" que es la lista de rectángulos. Se tiene `(x, y, w, h)` ya que representa las coordenadas del rectángulo que delimita el rostro. Donde "w" es el ancho, y "h" es la altura. Este ciclo recorre cada rectángulo de la lista, procesando cada objeto o región detectada por el clasificador de objetos. 
 
@@ -85,9 +85,9 @@ A continuación se describe lo que se realiza dentro del ciclo "for":
 * En la línea `frame2 = cv.resize(frame2,  (100,100), interpolation=cv.INTER_CUBIC)` se redimensiona el rostro al tamaño de 100x100 píxeles usando la interpolación bicúbica. 
 * En la línea `result = faceRecognizer.predict(frame2)` se envía como parámetro el rostro recortado "frame2" al algoritmo "EigenFace" para que haga una predicción, el cual devuelve una tupla con dos elementos, el primer elemento es la etiqueta de la persona y el segundo es la confianza (valor) que determina la similitud, mientas más grande sea el valor, mayor será la similitud. 
 * En la línea `if result[1] > 2800:` si verifica si el valor de confianza es mayor a 2800, si lo es con la línea `cv.putText(frame,'{}'.format(faces[result[0]]),(x,y-25),2,1.1,(0,255,0),1,cv.LINE_AA)` se muestra un texto con la etiqueta de la persona reconocida que se guarda en "result[0]", después con `cv.rectangle(frame, (x,y),(x+w,y+h),(0,255,0),2)` se pinta un rectángulo.
-* Si el "if" no se cumple, entonces con la linea `cv.putText(frame,'Desconocido',(x,y-20),2,0.8,(0,0,255),1,cv.LINE_AA)` se muestra un texto que dice "Desconocido" y se vuelve a pintar un rectángulo.
+* Si el "if" no se cumple, entonces con la línea `cv.putText(frame,'Desconocido',(x,y-20),2,0.8,(0,0,255),1,cv.LINE_AA)` se muestra un texto que dice "Desconocido" y se vuelve a pintar un rectángulo.
 
-Una vez que acaba el ciclo "for" con la línea `cv.imshow('frame', frame)` se muestra el fotograma con el texto y rectángulo que se dibuja en el reconocimiento facial. Con la linea `k = cv.waitKey(1)` espera 1 milisegundo, a que se presione una tecla y almacena el código ASCII de la tecla que se presiona. Si la tecla (variable "k") que se presiona corresponde a "Esc" el bucle "while" se rompe. 
+Una vez que acaba el ciclo "for" con la línea `cv.imshow('frame', frame)` se muestra el fotograma con el texto y rectángulo que se dibuja en el reconocimiento facial. Con la línea `k = cv.waitKey(1)` espera 1 milisegundo, a que se presione una tecla y almacena el código ASCII de la tecla que se presiona. Si la tecla (variable "k") que se presiona corresponde a "Esc" el bucle "while" se rompe. 
 
 Por último, con la línea `cap.release()` libera los recursos del video y `cv.destroyAllWindows()` cierra todas las ventanas abiertas.
 
