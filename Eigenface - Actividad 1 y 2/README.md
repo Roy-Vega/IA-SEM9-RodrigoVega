@@ -146,3 +146,17 @@ Cabe mencionar que para cambiar de algoritmo en ambos códigos (generación y le
 * `faceRecognizer = cv.face.LBPHFaceRecognizer_create()`
  
 Esto se debe a que la biblioteca 'cv' ya cuenta con los algoritmos necesarios e integrados.. 
+
+
+### Tabla Comparativa - Algoritmos 
+
+En la siguiente tabla se compararán las ventajas y rapidez de entrenamiento del modelo de los algoritmos "EigenFace", "FisherFace" y "LBPH".
+
+**Tabla:**
+| Algoritmo | Tiempo de Entrenamiento | Tiempo de Lectura del Modelo | Desempeño y Observaciones |
+|:---------:|:------------------------:|:-----------------------------:|:---------------------------:|
+| EigenFace | Aprox. 1 hora 20 min | 10 min | Este algoritmo demostró ser el más efectivo con un reconocimiento consistente. |
+| FisherFace | Aprox. 15 min | 4 min | La rapidez del entrenamiento es bastante, pero presenta dificultades en la detección precisa de rostros. |
+| LBPH | Aprox. 30 seg | 10 seg | El tiempo de entrenamiento es impresionantemente, pero de igual forma tiene problemas para detectar los rostros. |
+
+**Nota:** Los resultados de reconocimiento puede mejorar, dependiendo de la calidad y variación del conjunto de datos utilizado en el entrenamiento, así como los tonos de iluminación y captura de las imágenes.
