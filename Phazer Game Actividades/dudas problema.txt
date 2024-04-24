@@ -1,0 +1,25 @@
+1.1Modelo de la Red neuronal 
+1.2Entradas, salidas, cutnas capas ocultas y porque, pesos sinaptico.
+Que tipo de Red neuronal o neuronas se trabaja
+3.Que tipo de valores puede tomar el bías !?
+2.Que valor máximo puede tomar el bías !?
+En qué parte del modelo guarda el conocimiento.?
+
+
+Cuál es la función del target !?
+para q funciona el target
+
+dibujar el diagrama de las conexiones de las neuronas, como en la página que nos mostró a
+Representar el modelo de las 3 balas, señalando el diagrama ilustrado, más aparte:
+
+-------
+Bias: es un sesgo que ayuda a inhibir o converger mas rapdio al dato que yo espero 
+
+PESO SINAPTICO:
+
+**el incremento que se hace poco a poco a W1 Y W2 para irse aproximando a target. Si K es un valor pequeño tarda en mas epocas (iteraciones) llegar a target, si K es valor grande, es mas rapido pero puede que sobrepase el target, debe haber equilibrio.
+[//0.00000](notion://0.0.0.0/)**
+
+`#define K 0.03f`  //constante.  (valor de potenciometro, peso sinaptico) =
+
+Señalar las entradas y salidas
