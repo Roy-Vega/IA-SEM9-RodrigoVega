@@ -71,7 +71,30 @@ El target, en este caso, es la combinación de acciones que el jugador debe toma
 ### Posibles Situaciones
 
 - Primera situación:
-Las tres balas llegan a estar cerca del jugador, en ese caso lo más recomendado es mover el jugador a la izquierda (para atrás), y de esa forma esquiva la segunda y tercera bala, y solo tendría que brincar para esquivar la primera bala. 
+Las tres balas llegan a estar cerca del jugador, en ese caso lo recomendado es mover al jugador a la izquierda (para atrás), y de esa forma esquiva la segunda (diagonal) y tercera bala (cae), y solo tendría que saltar para esquivar la primera bala (horizontal).
+
+- Segunda situación:
+La primera bala (horizontal) y la tercera bala (cae) están cerca del jugador, se recomienda mover al jugador para atrás o adelante y saltar.
+
+- Tercera situación:
+La primera bala (horizontal) y la segunda bala (diagonal) están cerca del jugador, se recomienda mover al jugador para atrás y saltar.
+
+- Cuarta situación:
+La segunda bala (diagonal) y la tercera bala (cae) están cerca del jugador, se recomienda mover al jugador para atrás.
+
+- Quinta situación:
+La tercera bala (cae) está cerca del jugador, se recomienda mover al jugador para atrás o adelante.
+
+- Sexta situación:
+La segunda bala (diagonal) está cerca del jugador, se recomienda mover al jugador para atrás o adelante.
+
+- Séptima situación:
+La primera bala (horizontal) está cerca del jugador, se recomienda saltar.
+
+
+A continuación se muestra un diagrama que representa las situaciones, ordenadas de la primera a la séptima, de arriba hacia abajo y de izquierda a derecha.
+![Posibles Situaciones - Diagrama](Situaciones.png)
+
 
 ## Representacion Modelo MLP
 
