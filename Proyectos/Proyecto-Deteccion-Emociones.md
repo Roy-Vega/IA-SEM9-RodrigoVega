@@ -1,16 +1,21 @@
 # Proyecto Deteccion Estados de Animo - LBPH
 
+## Objetivo
+Desarrollar un sistema de reconocimiento facial que sea capaz de detectar y clasificar emociones humanas (feliz, triste, sorprendido) en tiempo real utilizando el algoritmo LBPH (Local Binary Patterns Histograms). Este sistema será implementado y evaluado utilizando un conjunto de datos de imágenes de rostros con diferentes emociones, y se desplegará en una aplicación de video en tiempo real.
+
 ## Descripción
+  
+Para realizar este proyecto se entrena el modelo mediante el algoritmo LBPH (Local Binary Patterns Histograms), el cual ha demostrado un mejor rendimiento en comparación con otros métodos como Eigenfaces y Fisherfaces. El dataset utilizado está compuesto por imágenes de rostros de distintas personas con diferentes emociones: 
+* Feliz (496 imágenes)
+* Triste (669 imágenes)
+* Sorprendido (459 imágenes)
 
-Para realizar este proyecto se entrena el modelo mediante el algoritmo LBPH (identificación de objetos y reconocimiento facial), el cual funciona mejor en comparación con Eigenceface y Fisherface. 
+Una vez entrenado, el modelo se utiliza junto con la cámara de video de una laptop para detectar y clasificar las emociones en tiempo real.
 
-El dataset de imágenes, está compuesto de rostros de distintas personas, con distintas emociones:
-* Feliz (496)
-* Triste (669)
-* Sorprendido (459)
+## Pasos para Realizar el Proyecto
 
-Una vez entrenado se usa la camara de video de la laptop para detectar las emociones.
-
+### 1. Entrenar el Modelo
+Se entrena el modelo utilizando imágenes de rostros etiquetadas con diferentes emociones. El código carga las imágenes, las procesa, y entrena un clasificador LBPH.
 
 Código - Entrenar Modelo:
 ```python
@@ -45,6 +50,11 @@ print('Exito!')
 #10seg
 ```
 
+El código carga las imágenes de diferentes emociones, las etiqueta y entrena un modelo LBPH con ellas. Finalmente, guarda el modelo entrenado en un archivo XML.
+
+### 2.  Detectar Emociones en Video
+
+Se utiliza el modelo entrenado para detectar emociones en tiempo real mediante la cámara de la laptop.
 
 Código - Detectar Emoción - Video:
 ```python
@@ -93,3 +103,8 @@ while True:
 cap.release()
 cv.destroyAllWindows()
 ```
+Este código carga el modelo entrenado y utiliza la cámara para capturar video en tiempo real. Detecta rostros en el video y clasifica las emociones utilizando el modelo LBPH. Las emociones detectadas se muestran en pantalla junto con un recuadro alrededor del rostro.
+
+## Resultados
+El sistema fue capaz de detectar y clasificar las emociones de las personas en tiempo real con una precisión aceptable. El entrenamiento del modelo LBPH se realizó con éxito y el modelo se pudo integrar con una aplicación de detección en tiempo real utilizando la cámara de la laptop.
+

@@ -1,22 +1,32 @@
 # Proyecto Localizar a Wally 
 
+## Objetivo
+Desarrollar un sistema de detección automática de Wally en imágenes utilizando un clasificador Haar cascade. El sistema será entrenado con imágenes positivas y negativas y se implementará en una aplicación que procesa imágenes de una carpeta y detecta la presencia de Wally.
+
 ## Descripción
 
 Para realizar este proyecto se usa la herramienta "Cascade Trainer GUI" en Windows, el cual permite entrenar un modelo usando Haar cascade. 
 
 A continuación se describe el dataset:
-* Una carpeta, que contiene una carpeta llamada "n" con imágenes negativas y otra carpeta llamada "p" que contiene imágenes positivas.
-* En este caso, las imágenes positivas son recortes del rostro de Wally, y del cuerpo de Wally. Intentando evitar ruido (colores, contenido, objetos, personas, etc.) de los alrededores de la imagen. 
-* Las imágenes negativas son objetos, ya sean completos, o parte de un objeto, como árboles, auto, personas, prendas, y también se tienen varios rostros y cuerpos de personajes que no son Wally.  
+* Una carpeta que contiene una subcarpeta llamada "n" con imágenes negativas y otra subcarpeta llamada "p" que contiene imágenes positivas.
+* Las imágenes positivas son recortes del rostro y cuerpo de Wally, intentando evitar ruido de los alrededores.
+* Las imágenes negativas incluyen objetos completos o partes de objetos como árboles, autos, personas, prendas, y varios rostros y cuerpos de personajes que no son Wally.
 
-Para entrenarlo mediante esta herramienta se proporciona con lo siguiente:
-Sección "Train":
-* Input: En el apartado "Samples Folder" se selecciona la carpeta donde se tiene el dataset con imágenes negativas y positivas. En el apartado "Positive Image Usage" se usa 80, en el apartado "Negative Image Count" se ingresa la cantidad exacta de imágenes negativas. El otro apartado "Force Positive Sample Count" se deja por defecto en 1.
-* Common: Se dejan los valores por defecto, excepto el número de "stages" se reduce a 16 debido a que tarda mucho tiempo en entrenarse mientras más épocas.
-* Cascade: Se dejan los valores por defecto. 
-* Boost: Se dejan los valores por defecto. 
+Para entrenar el modelo se usa "Cascade Trainer GUI" configurado de la siguiente manera:
+- **Input**: Se selecciona la carpeta del dataset. Se usa 80 para "Positive Image Usage" y se ingresa la cantidad exacta de imágenes negativas para "Negative Image Count". "Force Positive Sample Count" se deja en 1.
+- **Common**: Se dejan los valores por defecto excepto el número de "stages" que se reduce a 16.
+- **Cascade**: Se dejan los valores por defecto.
+- **Boost**: Se dejan los valores por defecto.
 
-Una vez que se genera el XML entrenado "cascade.xml" se usa en el siguiente código de Python para leer una imagen y que se detecta a Wally en la imagen (al dibujar un recuadro verde en el rostro) y guardando la imagen en la carpeta seleccionada.
+Una vez generado el XML entrenado ("cascade.xml"), se usa en un código Python para leer imágenes y detectar a Wally, dibujando un recuadro verde alrededor de su rostro y guardando la imagen en una carpeta seleccionada.
+
+## Pasos para Realizar el Proyecto
+
+### 1. Entrenar el Modelo
+Se entrena el modelo usando la herramienta "Cascade Trainer GUI" con un dataset de imágenes positivas y negativas.
+
+### 2. Detectar a Wally en Imágenes
+Se utiliza el modelo entrenado para detectar a Wally en imágenes almacenadas en una carpeta.
 
 Código - Detectar a Wally - Folder:
 ```python
@@ -76,4 +86,10 @@ for image_file, params in image_params.items():
         print(f"Wally detectado en {image_file}. Guardado en {output_path}.")
 
 ```
+
+Este código carga el modelo entrenado y procesa imágenes de una carpeta, detectando la presencia de Wally y dibujando un rectángulo alrededor de su rostro.
+
+## Resultados
+
+El sistema fue capaz de detectar a Wally en varias imágenes con una precisión razonable. El entrenamiento del modelo Haar cascade se realizó con éxito y el modelo se integró en una aplicación de detección de imágenes.
 

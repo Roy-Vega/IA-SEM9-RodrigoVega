@@ -2,14 +2,130 @@
 
 # Proyecto Phaser 3 Balas 
 
+## Objetivo
+
+El objetivo de este proyecto es adaptar un juego existente en Phaser 3, inicialmente diseñado con una sola bala y dos acciones posibles del jugador (saltar o no hacer nada), para que funcione con tres balas (horizontal, vertical y diagonal) y cuatro acciones del jugador (saltar, moverse a la izquierda, moverse a la derecha o quedarse quieto). Además, se busca entrenar un modelo de red neuronal que permita al jugador tomar decisiones automáticas para esquivar las balas de manera efectiva.
+
 ## Descripción
 
-Para realizar este proyecto se nos proporcionó el juego de phaser funcionando con 1 bala horizontal y el jugador puede saltar o no hacer nada. El cual se entrenaba y jugaba de forma automática mediante el modelo. 
-
-Se adaptó y modificó el código para que funcionara con 3 balas (horizontal, vertical y diagonal) y con 4 posibles acciones que el jugador puede hacer (saltar, moverse izquierda, moverse derecha, quedarse quieto).
+El proyecto implica modificar el código del juego en Phaser 3 para incorporar las nuevas funcionalidades. Se realizarán ajustes en la lógica del juego, en el manejo de las balas y en las acciones del jugador. Además, se implementará un modelo de red neuronal utilizando un perceptrón con una arquitectura específica, donde las entradas representan las características de las balas y las salidas corresponden a las acciones del jugador. El modelo será entrenado con datos generados durante el juego para aprender a esquivar las balas de manera óptima.
 
 
-Código del juego Phaser:
+## Pasos para Realizar el Proyecto
+
+### 1. Modificación del código del juego:
+Se ajustará el código del juego en Phaser 3 para adaptarlo a las nuevas características, incluyendo la incorporación de tres balas y la ampliación de las acciones del jugador.
+
+### 2. Diseño del modelo de red neuronal: 
+Se definirá la arquitectura del modelo de red neuronal, especificando el número de neuronas en cada capa y la función de activación a utilizar.
+
+### 3. Entrenamiento del modelo de red neuronal:
+Se generarán datos de entrenamiento durante la ejecución del juego y se utilizarán para entrenar el modelo de red neuronal.
+
+### 4. Integración del modelo en el juego:
+Se implementará la lógica para que el modelo de red neuronal tome decisiones automáticas durante el juego, en función de las características de las balas (en tiempo real).
+
+A continuación se muestra más información del proyecto:
+
+## Modelo de Red Neuronal
+
+Para abordar este problema, se propone el uso de un perceptron.
+
+- La cantidad de neuronas en la capa de entrada corresponde a la cantidad de características de los datos de entrada, que en este caso son seis en total referentes a las tres balas.
+- La cantidad de neuronas en la capa de salida coincide con la cantidad de acciones de salida, que son tres: saltar, moverse hacia la izquierda y moverse hacia la derecha.
+
+### Funcion de Activacion
+
+En este caso, se usa la función de activación "sigmoide".
+
+
+### Bias
+El bias puede tomar valores reales, como pueden ser positivos, negativos o cero.
+
+Como no hay un límite específico para el valor máximo que puede tomar el bias. Los valores del bias suelen ser pequeños y se inicializan aleatoriamente para facilitar el entrenamiento de la red neuronal.
+
+En este caso, el bias se incluiría en cada neurona de las capas ocultas y de salida, excepto en la capa de entrada. 
+
+De esta forma, el bias ayudaría a ajustar la salida de cada neurona en función de los datos de entrada y los pesos, lo que permitiría que la red neuronal aprenda a esquivar las balas de manera efectiva.
+
+### Peso Sinaptico 
+
+Los pesos sinápticos son parámetros ajustables que se utilizan para ponderar la influencia de las entradas en las neuronas de la red.
+
+Estos pesos se ajustan (por incremento) durante el entrenamiento de la red neuronal para minimizar el error entre las salidas del modelo y el target (objetivo) esperado.
+
+En un perceptron simple, los pesos sinápticos se conocen como W1 y W2. 
+
+En los pesos sinápticos es donde se almacena el conocimiento de la red neuronal y, si se quiere usar el modelo para futuros problemas similares, se debe guardar el bias, W1 y W2. 
+
+## Tabla - Entradas y Salidas
+
+**Tabla:**
+
+| Dx1 (Distancia Bala 1) | Vx1 (Velocidad Bala 1) | Dx2 (Distancia Bala 2) | Vx2 (Velocidad Bala 2) | Dy (Distancia Bala 3) | Vx3 (Velocidad Bala 3) | S1 (Saltar) | S2 (Moverse Derecha) | S3 (Moverse Izquierda) |
+|:-----------------------:|:----------------------:|:----------------------:|:----------------------:|:---------------------:|:----------------------:|:------------:|:----------------------:|:-----------------------:|
+|           500           |           100          |           500          |           100          |          450          |            100           |       0      |           0            |            0            |
+|           30            |           100          |           500          |           100          |          450          |            100           |       0      |           0            |            0            |
+|           500           |           100          |           500          |           100          |           30          |            100           |       0      |           1            |            0            |
+|           30            |           100          |           500          |           100          |           30          |            100           |       0      |           1            |            0            |
+|           20            |           100          |           20           |           100          |           20          |            100           |       1      |           0            |            1            |
+
+
+Entradas:
+- Distancia de la bala 1
+- Velocidad de la bala 1
+- Distancia de la bala 2
+- Velocidad de la bala 2
+- Distancia de la bala 3
+- Velocidad de la bala 3
+  
+Salidas:
+- Saltar
+- Moverse Izquierda
+- Moverse Derecha  
+
+
+
+## Target
+
+El target representa la salida deseada o esperada para un conjunto de entradas. Es la respuesta correcta que se quiere que la red neuronal aprenda a predecir. Por lo que su función es usarse como referencia u objetivo durante el proceso de entrenamiento de una red neuronal.
+
+Durante el entrenamiento de la red neuronal, se compara la salida producida contra el target esperado, y se calcula el error. El valor del error se usa para ajustar los pesos sinápticos, con el objetivo de minimizar el error para que cada vez se parezca al resultado esperado.
+
+El target, en este caso, es la combinación de acciones que el jugador debe tomar para esquivar/evitar las tres balas que se dirigen hacia el jugador.
+- La primera bala se dirige enfrente del jugador en una línea horizontal con velocidad variable.
+- La segunda bala se dirige diagonalmente con velocidad variable.
+- La tercera bala cae encima del jugador en el mismo punto con la misma velocidad constante.
+
+### Posibles Situaciones
+
+- Primera situación:
+Las tres balas llegan a estar cerca del jugador, en ese caso lo recomendado es mover al jugador a la izquierda (para atrás), y de esa forma esquiva la segunda (diagonal) y tercera bala (cae), y solo tendría que saltar para esquivar la primera bala (horizontal).
+
+- Segunda situación:
+La primera bala (horizontal) y la tercera bala (cae) están cerca del jugador, se recomienda mover al jugador para atrás o adelante y saltar.
+
+- Tercera situación:
+La primera bala (horizontal) y la segunda bala (diagonal) están cerca del jugador, se recomienda mover al jugador para atrás y saltar.
+
+- Cuarta situación:
+La segunda bala (diagonal) y la tercera bala (cae) están cerca del jugador, se recomienda mover al jugador para atrás.
+
+- Quinta situación:
+La tercera bala (cae) está cerca del jugador, se recomienda mover al jugador para atrás o adelante.
+
+- Sexta situación:
+La segunda bala (diagonal) está cerca del jugador, se recomienda mover al jugador para atrás o adelante.
+
+- Séptima situación:
+La primera bala (horizontal) está cerca del jugador, se recomienda saltar.
+
+
+A continuación se muestra un diagrama que representa las situaciones, ordenadas de la primera a la séptima, de arriba hacia abajo y de izquierda a derecha.
+![Posibles Situaciones - Diagrama](Situaciones.png)
+
+
+## Código del juego Phaser (3 Balas):
 ```javascript
 var w=800;
 var h=400;
@@ -370,102 +486,7 @@ function izquierda(){
 
 ```
 
-A continuación se muestra más información del proyecto:
+## Resultados
 
-## Modelo de Red Neuronal
-
-Para abordar este problema, se propone el uso de un perceptron.
-
-- La cantidad de neuronas en la capa de entrada corresponde a la cantidad de características de los datos de entrada, que en este caso son seis en total referentes a las tres balas.
-- La cantidad de neuronas en la capa de salida coincide con la cantidad de acciones de salida, que son tres: saltar, moverse hacia la izquierda y moverse hacia la derecha.
-
-### Funcion de Activacion
-
-En este caso, se usa la función de activación "sigmoide".
-
-
-### Bias
-El bias puede tomar valores reales, como pueden ser positivos, negativos o cero.
-
-Como no hay un límite específico para el valor máximo que puede tomar el bias. Los valores del bias suelen ser pequeños y se inicializan aleatoriamente para facilitar el entrenamiento de la red neuronal.
-
-En este caso, el bias se incluiría en cada neurona de las capas ocultas y de salida, excepto en la capa de entrada. 
-
-De esta forma, el bias ayudaría a ajustar la salida de cada neurona en función de los datos de entrada y los pesos, lo que permitiría que la red neuronal aprenda a esquivar las balas de manera efectiva.
-
-### Peso Sinaptico 
-
-Los pesos sinápticos son parámetros ajustables que se utilizan para ponderar la influencia de las entradas en las neuronas de la red.
-
-Estos pesos se ajustan (por incremento) durante el entrenamiento de la red neuronal para minimizar el error entre las salidas del modelo y el target (objetivo) esperado.
-
-En un perceptron simple, los pesos sinápticos se conocen como W1 y W2. 
-
-En los pesos sinápticos es donde se almacena el conocimiento de la red neuronal y, si se quiere usar el modelo para futuros problemas similares, se debe guardar el bias, W1 y W2. 
-
-## Tabla - Entradas y Salidas
-
-**Tabla:**
-
-| Dx1 (Distancia Bala 1) | Vx1 (Velocidad Bala 1) | Dx2 (Distancia Bala 2) | Vx2 (Velocidad Bala 2) | Dy (Distancia Bala 3) | Vx3 (Velocidad Bala 3) | S1 (Saltar) | S2 (Moverse Derecha) | S3 (Moverse Izquierda) |
-|:-----------------------:|:----------------------:|:----------------------:|:----------------------:|:---------------------:|:----------------------:|:------------:|:----------------------:|:-----------------------:|
-|           500           |           100          |           500          |           100          |          450          |            100           |       0      |           0            |            0            |
-|           30            |           100          |           500          |           100          |          450          |            100           |       0      |           0            |            0            |
-|           500           |           100          |           500          |           100          |           30          |            100           |       0      |           1            |            0            |
-|           30            |           100          |           500          |           100          |           30          |            100           |       0      |           1            |            0            |
-|           20            |           100          |           20           |           100          |           20          |            100           |       1      |           0            |            1            |
-
-
-Entradas:
-- Distancia de la bala 1
-- Velocidad de la bala 1
-- Distancia de la bala 2
-- Velocidad de la bala 2
-- Distancia de la bala 3
-- Velocidad de la bala 3
-  
-Salidas:
-- Saltar
-- Moverse Izquierda
-- Moverse Derecha  
-
-
-
-## Target
-
-El target representa la salida deseada o esperada para un conjunto de entradas. Es la respuesta correcta que se quiere que la red neuronal aprenda a predecir. Por lo que su función es usarse como referencia u objetivo durante el proceso de entrenamiento de una red neuronal.
-
-Durante el entrenamiento de la red neuronal, se compara la salida producida contra el target esperado, y se calcula el error. El valor del error se usa para ajustar los pesos sinápticos, con el objetivo de minimizar el error para que cada vez se parezca al resultado esperado.
-
-El target, en este caso, es la combinación de acciones que el jugador debe tomar para esquivar/evitar las tres balas que se dirigen hacia el jugador.
-- La primera bala se dirige enfrente del jugador en una línea horizontal con velocidad variable.
-- La segunda bala se dirige diagonalmente con velocidad variable.
-- La tercera bala cae encima del jugador en el mismo punto con la misma velocidad constante.
-
-### Posibles Situaciones
-
-- Primera situación:
-Las tres balas llegan a estar cerca del jugador, en ese caso lo recomendado es mover al jugador a la izquierda (para atrás), y de esa forma esquiva la segunda (diagonal) y tercera bala (cae), y solo tendría que saltar para esquivar la primera bala (horizontal).
-
-- Segunda situación:
-La primera bala (horizontal) y la tercera bala (cae) están cerca del jugador, se recomienda mover al jugador para atrás o adelante y saltar.
-
-- Tercera situación:
-La primera bala (horizontal) y la segunda bala (diagonal) están cerca del jugador, se recomienda mover al jugador para atrás y saltar.
-
-- Cuarta situación:
-La segunda bala (diagonal) y la tercera bala (cae) están cerca del jugador, se recomienda mover al jugador para atrás.
-
-- Quinta situación:
-La tercera bala (cae) está cerca del jugador, se recomienda mover al jugador para atrás o adelante.
-
-- Sexta situación:
-La segunda bala (diagonal) está cerca del jugador, se recomienda mover al jugador para atrás o adelante.
-
-- Séptima situación:
-La primera bala (horizontal) está cerca del jugador, se recomienda saltar.
-
-
-A continuación se muestra un diagrama que representa las situaciones, ordenadas de la primera a la séptima, de arriba hacia abajo y de izquierda a derecha.
-![Posibles Situaciones - Diagrama](Situaciones.png)
+El código del juego en Phaser 3 se adaptó para funcionar con tres balas y cuatro acciones del jugador. Se implementó un modelo de red neuronal utilizando un perceptrón para la toma automática de decisiones del jugador.
 

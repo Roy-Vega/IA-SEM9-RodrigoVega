@@ -2,11 +2,14 @@
 
 # Proyecto Phaser Bala Rebota
 
+## Objetivo
+El objetivo de este proyecto es adaptar un juego Phaser preexistente para implementar la funcionalidad de que la bala rebote en los bordes del escenario y permitir al jugador moverse libremente en todas direcciones. Además, se entrenará un modelo de red neuronal para que el jugador pueda jugar de forma automática, tomando decisiones basadas en la posición de la bala y del jugador.
+
 ## Descripción
 
-Para realizar este proyecto se usó de base el juego de phaser funcionando con 1 bala horizontal y el jugador puede saltar o no hacer nada. El cual se entrenaba y jugaba de forma automática mediante el modelo. 
+El proyecto se basa en un juego de Phaser que originalmente tenía una mecánica simple: una bala horizontal y un jugador capaz de saltar o no hacer nada. Se realizarán modificaciones en el código para permitir que la bala rebote en los bordes del escenario y para que el jugador pueda moverse libremente en todas direcciones (izquierda, derecha, arriba y abajo), como en un juego top-down. Además, se implementará un modelo de red neuronal que tomará decisiones para el jugador automático, basándose en la posición relativa de la bala y el jugador.
 
-Se adaptó y modificó el código para que la bala rebotara en los bordes del juego (arena) y que el jugador se pudiera mover libremente como en un juego top-down, en este caso puede:
+Salidas (posibles acciones del jugador):
 * Hacer Nada
 * Moverse Izquierda
 * Moverse Derecha
@@ -21,7 +24,27 @@ A continuación se explica cómo se entrenó al modelo:
 Al mandarse los datos de entrada, la neurona arroja las probabilidades de salida para cada acción, y en el código se toma el valor más alto (equivalente a la acción más probable o correcta) y realiza la acción correspondiente a ese valor. 
 
 
-Código del juego Phaser:
+## Pasos para Realizar el Proyecto
+
+### 1. Preparación del entorno: 
+Configurar el entorno de desarrollo con Phaser y cargar los recursos necesarios para el juego (imágenes, sprites, etc.).
+
+### 2. Implementación del movimiento del jugador: 
+Programar el movimiento del jugador en todas las direcciones usando las teclas de dirección del teclado.
+
+### 3. Implementación del rebote de la bala: 
+Modificar el comportamiento de la bala para que rebote en los bordes del escenario en lugar de desaparecer.
+
+### 4. Entrenamiento del modelo de red neuronal: 
+Definir el modelo de red neuronal con las entradas y salidas adecuadas, y entrenarlo con datos generados por el juego.
+
+### 5. Implementación del jugador automático: 
+Integrar el modelo de red neuronal en el juego para permitir que el jugador juegue de forma automática.
+
+### 6. Pruebas y ajustes: 
+Probar el juego en diferentes escenarios para detectar posibles problemas y ajustar los parámetros del modelo de red neuronal si es necesario.
+
+## Código del juego Phaser (Bala Rebota):
 ```javascript
 var w=800;
 var h=400;
@@ -367,3 +390,8 @@ function render(){
 
 
 ```
+
+## Resultados
+
+El código del juego se adaptó para funcionar con una bala que rebota y con cinco acciones del jugador. Se implementó un modelo de red neuronal utilizando un perceptrón para la toma automática de decisiones del jugador.
+

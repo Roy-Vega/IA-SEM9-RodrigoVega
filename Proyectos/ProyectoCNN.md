@@ -1,5 +1,9 @@
 # Proyecto CNN 
 
+## Objetivo
+
+Implementar una Convolutional Neural Network (CNN) para la clasificación de imágenes que representan diferentes situaciones de emergencia, como asaltos, robos a casa, incendios, inundaciones y tornados.
+
 ## Descripción
 
 Para realizar este proyecto se nos proporcionó el código base, para probar la CNN (red neuronal convolucional) la cual originalmente detectaba varios tipos de deportes.
@@ -16,7 +20,24 @@ Las 5 situaciones con las que se entrenó el modelo y la cantidad de imágenes d
 * Tornado (8,436)
 
 
-Código:
+## Pasos para realizar el proyecto
+
+### 1. Preparación del entorno y dataset: 
+Se prepara el entorno de trabajo y se organiza el dataset de imágenes en carpetas separadas por categorías de situaciones de emergencia.
+
+### 2. Adaptación del código base: 
+Se realiza la adaptación del código base de la CNN para su uso en la clasificación de situaciones de emergencia en lugar de deportes.
+
+### 3. Entrenamiento del modelo: 
+Se entrena el modelo de CNN utilizando el dataset preparado.
+
+### 4. Evaluación del modelo: 
+Se evalúa el rendimiento del modelo entrenado utilizando un conjunto de datos de prueba, midiendo la precisión y otros indicadores de rendimiento.
+
+### 5. Generación de etiquetas en imágenes: 
+Se añade funcionalidad al código para etiquetar imágenes con texto que indique la situación de emergencia detectada por el modelo.
+
+## Código CNN:
 ```python
 
 import cv2 
@@ -294,4 +315,8 @@ for filepath in filenames:
         plt.axis('off')
         plt.show()
 ```
+
+## Resultados
+
+El código se adapta para funcionar con imágenes de diferentes situaciones de emergencia, y el modelo de CNN logra una precisión aceptable en la clasificación de estas situaciones. Cabe mencionar que el modelo llega a confundirse entre la situacion de "robo a casa" y "asalto". 
 
